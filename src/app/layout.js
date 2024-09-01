@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import vazirFont from "@/constants/localFonts";
+import Header from "./Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,8 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={`${vazirFont.variable}.font-sans`}>
+        <Header />
+        <div className="contianer xl:max-w-screen-xl"> {children}</div>
+      </body>
     </html>
   );
 }
