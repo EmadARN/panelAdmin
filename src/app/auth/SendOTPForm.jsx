@@ -1,21 +1,26 @@
+import Loading from "@/common/Loading";
 import TextField from "@/common/TextField";
 import React from "react";
 
-const SendOTPForm = ({ phoneNumber, onChange }) => {
+const SendOTPForm = ({ phoneNumber, onChange, onSubmit, isPending }) => {
   return (
     <div>
-      <form action="">
+      <form className="space-y-10" onSubmit={onSubmit}>
+        <TextField
+          label="شماره موبایل"
+          name="phoneNumber"
+          value={phoneNumber}
+          onChange={onChange}
+        />
         <div>
-          <TextField
-            label="شماره موبایل"
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={onChange}
-          />
+          {isPending ? (
+            <Loading />
+          ) : (
+            <button type="submit" className="btn btn--primary w-full">
+              ارسال کد تایید
+            </button>
+          )}
         </div>
-        <button type="submit" className="btn btn--primary w-full mt-8">
-          ارسال کد تایید
-        </button>
       </form>
     </div>
   );
