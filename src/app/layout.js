@@ -1,9 +1,8 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import vazirFont from "@/constants/localFonts";
 import Header from "./Header";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "react-hot-toast";
+import Providers from "./Providers";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,9 +12,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirFont.variable}.font-sans`}>
+      <body className={`${vazirFont.variable} font-sans`}>
+        <Toaster />
         <Header />
-        <div className="contianer xl:max-w-screen-xl"> {children}</div>
+        <div className="contianer xl:max-w-screen-xl">
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );
