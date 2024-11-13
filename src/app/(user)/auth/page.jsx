@@ -28,6 +28,7 @@ const AuthPage = () => {
       mutationFn: checkOtp,
     }
   );
+
   const phoneNumberHandler = (e) => {
     setPhoneNumber(e.target.value);
   };
@@ -36,11 +37,15 @@ const AuthPage = () => {
     e.preventDefault();
     try {
       const data = await mutateGetOtp({ phoneNumber });
+      console.log(data);
+
       toast.success(data.message);
       setStep(2);
       setTime(RESEND_TIME);
       setOtp(""); //reset last otp
     } catch (error) {
+      console.log(error);
+
       toast.error(error?.response?.data?.message);
       setStep(2);
     }
@@ -50,7 +55,6 @@ const AuthPage = () => {
     e.preventDefault();
     try {
       const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
-
       toast.success(message);
       if (user.isActive) {
         router.push("/");
@@ -70,7 +74,7 @@ const AuthPage = () => {
       if (timer) clearInterval(timer);
     };
   }, [time]);
-  console.log(otpResponse);
+  console.log("otpResponse", phoneNumber);
 
   const renderSteps = () => {
     switch (step) {
@@ -94,6 +98,7 @@ const AuthPage = () => {
             onResendOtp={sendOtpHandler}
             otpResponse={otpResponse}
             isCechkingOtp={isCechkingOtp}
+            phoneNumber={phoneNumber}
           />
         );
       default:

@@ -11,21 +11,29 @@ function CheckOTPForm({
   time,
   onResendOtp,
   isCechkingOtp,
+  phoneNumber,
 }) {
   return (
     <div>
       <button onClick={onBack} className="mb-4">
         <HiArrowNarrowRight className="w-6 h-6 text-secondary-500" />
       </button>
-      {otpResponse && (
+      {/* {otpResponse && (
         <p>
           {otpResponse?.message}
           <button onClick={onBack}>
             <CiEdit className="w-6 h-6 text-primary-900" />
           </button>
         </p>
+      )} */}
+      {phoneNumber && (
+        <p>
+          {phoneNumber}
+          <button onClick={onBack}>
+            <CiEdit className="w-6 h-6 text-primary-900" />
+          </button>
+        </p>
       )}
-
       <div className="mb-4 text-secondary-500">
         {time > 0 ? (
           <p>{time} ثانیه تا ارسال مجدد کد</p>
